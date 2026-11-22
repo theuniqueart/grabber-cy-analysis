@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" width="100%" height="100%">
+  <defs>
+    <style>
+      .box { fill: none; stroke: #30363d; stroke-width: 1.2; rx: 4px; }
+      .box-hi { fill: none; stroke: #8b949e; stroke-width: 1.5; rx: 4px; }
+      .title { fill: #f0f6fc; font-family: monospace; font-size: 13px; font-weight: 600; }
+      .sub { fill: #8b949e; font-family: monospace; font-size: 11px; }
+      .code { fill: #79c0ff; font-family: monospace; font-size: 11px; }
+      .line { stroke: #484f58; stroke-width: 1.2; fill: none; }
+      .arr { fill: #484f58; }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" class="arr"/>
+    </marker>
+  </defs>
+
+  <rect x="300" y="20" width="300" height="50" class="box-hi" />
+  <text x="450" y="42" text-anchor="middle" class="title">win_main (+0xC7540)</text>
+  <text x="450" y="58" text-anchor="middle" class="sub">Anti-Analysis Gate &amp; Direct Syscalls</text>
+
+  <line x1="450" y1="70" x2="450" y2="100" class="line" marker-end="url(#arr)" />
+
+  <rect x="260" y="100" width="380" height="55" class="box" />
+  <text x="450" y="122" text-anchor="middle" class="title">Task Coordinator (+0xC5420)</text>
+  <text x="450" y="140" text-anchor="middle" class="code">_InterlockedDecrement(&amp;ActiveTaskCount)</text>
+
+  <path d="M 450 155 L 450 185 M 110 185 L 790 185" class="line" />
+
+  <line x1="110" y1="185" x2="110" y2="210" class="line" marker-end="url(#arr)" />
+  <rect x="40" y="210" width="140" height="65" class="box" />
+  <text x="110" y="232" text-anchor="middle" class="title">thread_clipper</text>
+  <text x="110" y="248" text-anchor="middle" class="code">+0xC3380</text>
+  <text x="110" y="264" text-anchor="middle" class="sub">500ms Delay Loop</text>
+
+  <line x1="280" y1="185" x2="280" y2="210" class="line" marker-end="url(#arr)" />
+  <rect x="210" y="210" width="140" height="65" class="box" />
+  <text x="280" y="232" text-anchor="middle" class="title">thread_exodus</text>
+  <text x="280" y="248" text-anchor="middle" class="code">+0xC33B0</text>
+  <text x="280" y="264" text-anchor="middle" class="sub">app.asar Patch</text>
+
+  <line x1="450" y1="185" x2="450" y2="210" class="line" marker-end="url(#arr)" />
+  <rect x="380" y="210" width="140" height="65" class="box" />
+  <text x="450" y="232" text-anchor="middle" class="title">thread_discord</text>
+  <text x="450" y="248" text-anchor="middle" class="code">+0xC3470</text>
+  <text x="450" y="264" text-anchor="middle" class="sub">index.js Overwrite</text>
+
+  <line x1="620" y1="185" x2="620" y2="210" class="line" marker-end="url(#arr)" />
+  <rect x="550" y="210" width="140" height="65" class="box" />
+  <text x="620" y="232" text-anchor="middle" class="title">thread_chromium</text>
+  <text x="620" y="248" text-anchor="middle" class="code">+0xC3550</text>
+  <text x="620" y="264" text-anchor="middle" class="sub">v20 / AES-GCM</text>
+
+  <line x1="790" y1="185" x2="790" y2="210" class="line" marker-end="url(#arr)" />
+  <rect x="720" y="210" width="140" height="65" class="box" />
+  <text x="790" y="232" text-anchor="middle" class="title">thread_bip39</text>
+  <text x="790" y="248" text-anchor="middle" class="code">+0xC3710</text>
+  <text x="790" y="264" text-anchor="middle" class="sub">Wordlist Scanner</text>
+
+  <path d="M 110 275 L 110 310 M 280 275 L 280 310 M 450 275 L 450 310 M 620 275 L 620 310 M 790 275 L 790 310 M 110 310 L 790 310 M 450 310 L 450 340" class="line" />
+
+  <rect x="260" y="340" width="380" height="55" class="box" />
+  <text x="450" y="362" text-anchor="middle" class="title">Staging Buffer (+0xDEF10)</text>
+  <text x="450" y="380" text-anchor="middle" class="sub">%TEMP%\_{HEX}.tmp | In-Memory ZIP</text>
+
+  <line x1="450" y1="395" x2="450" y2="425" class="line" marker-end="url(#arr)" />
+
+  <rect x="300" y="425" width="300" height="45" class="box-hi" />
+  <text x="450" y="445" text-anchor="middle" class="title">Collector: doxbin.cy</text>
+  <text x="450" y="460" text-anchor="middle" class="code">POST /exfiltrate</text>
+
+</svg>

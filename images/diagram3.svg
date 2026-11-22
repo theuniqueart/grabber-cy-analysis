@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 240" width="100%" height="100%">
+  <defs>
+    <style>
+      .box { fill: none; stroke: #30363d; stroke-width: 1.2; rx: 4px; }
+      .box-hi { fill: none; stroke: #8b949e; stroke-width: 1.5; rx: 4px; }
+      .title { fill: #f0f6fc; font-family: monospace; font-size: 13px; font-weight: 600; }
+      .sub { fill: #8b949e; font-family: monospace; font-size: 11px; }
+      .code { fill: #79c0ff; font-family: monospace; font-size: 11px; }
+      .line { stroke: #484f58; stroke-width: 1.2; fill: none; }
+      .arr { fill: #484f58; }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" class="arr"/>
+    </marker>
+  </defs>
+
+  <!-- Hooked Flow -->
+  <text x="220" y="30" text-anchor="middle" class="title">Standard Win32 Call (Hooked by EDR)</text>
+  <rect x="30" y="45" width="380" height="160" class="box" />
+  <text x="220" y="75" text-anchor="middle" class="sub">1. Process calls VirtualAllocEx</text>
+  <text x="220" y="105" text-anchor="middle" class="code">ntdll.dll!ZwAllocateVirtualMemory (0xE9 JMP)</text>
+  <text x="220" y="135" text-anchor="middle" class="sub">2. Redirection into EDR Sensor Engine</text>
+  <text x="220" y="165" text-anchor="middle" class="sub">3. Memory Inspection &amp; Behavioral Block</text>
+
+  <!-- Direct Syscall Flow -->
+  <text x="680" y="30" text-anchor="middle" class="title">DGT4R Direct Syscall Flow (Unhooked)</text>
+  <rect x="490" y="45" width="380" height="160" class="box-hi" />
+  <text x="680" y="75" text-anchor="middle" class="sub">1. Halo's Gate Resolves SSN from NTDLL</text>
+  <text x="680" y="105" text-anchor="middle" class="code">mov r10, rcx; mov eax, [SSN]; syscall;</text>
+  <text x="680" y="135" text-anchor="middle" class="sub">2. Kernel Ring 0 Transfers Control Directly</text>
+  <text x="680" y="165" text-anchor="middle" class="sub">3. Zero EDR Telemetry / Zero Inline Hooks Hit</text>
+
+</svg>

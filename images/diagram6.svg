@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 250" width="100%" height="100%">
+  <defs>
+    <style>
+      .box { fill: none; stroke: #30363d; stroke-width: 1.2; rx: 4px; }
+      .box-hi { fill: none; stroke: #8b949e; stroke-width: 1.5; rx: 4px; }
+      .title { fill: #f0f6fc; font-family: monospace; font-size: 13px; font-weight: 600; }
+      .sub { fill: #8b949e; font-family: monospace; font-size: 11px; }
+      .code { fill: #79c0ff; font-family: monospace; font-size: 11px; }
+      .line { stroke: #484f58; stroke-width: 1.2; fill: none; }
+      .arr { fill: #484f58; }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" class="arr"/>
+    </marker>
+  </defs>
+
+  <!-- Step 1 -->
+  <rect x="20" y="25" width="200" height="75" class="box" />
+  <text x="120" y="48" text-anchor="middle" class="title">1. Locate &amp; Backup</text>
+  <text x="120" y="66" text-anchor="middle" class="code">ZwOpenFile(app.asar)</text>
+  <text x="120" y="82" text-anchor="middle" class="sub">Backup to app.asar.bak</text>
+
+  <line x1="220" y1="62" x2="250" y2="62" class="line" marker-end="url(#arr)" />
+
+  <!-- Step 2 -->
+  <rect x="250" y="25" width="200" height="75" class="box-hi" />
+  <text x="350" y="48" text-anchor="middle" class="title">2. Heap Extraction</text>
+  <text x="350" y="66" text-anchor="middle" class="code">JSON Table ( +0xB6120 )</text>
+  <text x="350" y="82" text-anchor="middle" class="sub">Parse file offsets map</text>
+
+  <line x1="450" y1="62" x2="480" y2="62" class="line" marker-end="url(#arr)" />
+
+  <!-- Step 3 -->
+  <rect x="480" y="25" width="210" height="75" class="box-hi" />
+  <text x="585" y="48" text-anchor="middle" class="title">3. In-Memory Patch</text>
+  <text x="585" y="66" text-anchor="middle" class="code">wallet.html &amp; wallet/index.js</text>
+  <text x="585" y="82" text-anchor="middle" class="sub">Strip CSP &amp; hook bip39</text>
+
+  <line x1="690" y1="62" x2="720" y2="62" class="line" marker-end="url(#arr)" />
+
+  <!-- Step 4 -->
+  <rect x="720" y="25" width="180" height="75" class="box" />
+  <text x="810" y="48" text-anchor="middle" class="title">4. Repack &amp; Commit</text>
+  <text x="810" y="66" text-anchor="middle" class="code">ZwWriteFile (syscall)</text>
+  <text x="810" y="82" text-anchor="middle" class="sub">Direct disk overwrite</text>
+
+  <!-- Connect down from Step 3 & 4 to Result -->
+  <path d="M 585 100 L 585 140 M 810 100 L 810 140 M 585 140 L 810 140 M 697 140 L 697 165" class="line" marker-end="url(#arr)" />
+
+  <!-- Explanatory note box on left -->
+  <rect x="20" y="165" width="430" height="65" class="box" />
+  <text x="235" y="188" text-anchor="middle" class="title">Zero External Utilities</text>
+  <text x="235" y="206" text-anchor="middle" class="sub">No node.exe or asar npm package invoked on disk</text>
+  <text x="235" y="220" text-anchor="middle" class="code">All JSON traversal executed in native C++ heap</text>
+
+  <!-- Final Armed box on right -->
+  <rect x="480" y="165" width="420" height="65" class="box-hi" />
+  <text x="690" y="188" text-anchor="middle" class="title">Backdoor Armed on Disk</text>
+  <text x="690" y="206" text-anchor="middle" class="code">Hooks Buffer.from &amp; bip39 in app/wallet/index.js</text>
+  <text x="690" y="220" text-anchor="middle" class="sub">Steals 12/24 seed phrase when wallet is unlocked</text>
+</svg>
